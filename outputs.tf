@@ -36,7 +36,7 @@ output "redshiftserverless_workgroups_port" {
 }
 output "redshiftserverless_workgroups_price_performance_target" {
   description = "Map of price_performance_target values across all redshiftserverless_workgroups, keyed the same as var.redshiftserverless_workgroups"
-  value       = { for k, v in aws_redshiftserverless_workgroup.redshiftserverless_workgroups : k => v.price_performance_target if v.price_performance_target != null && length(v.price_performance_target) > 0 }
+  value       = { for k, v in aws_redshiftserverless_workgroup.redshiftserverless_workgroups : k => one(v.price_performance_target) if v.price_performance_target != null && length(v.price_performance_target) > 0 }
 }
 output "redshiftserverless_workgroups_publicly_accessible" {
   description = "Map of publicly_accessible values across all redshiftserverless_workgroups, keyed the same as var.redshiftserverless_workgroups"
